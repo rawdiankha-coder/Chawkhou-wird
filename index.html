@@ -29,7 +29,7 @@ footer{text-align:center;padding:25px;color:#6b776f;font-size:13px}
 <body>
 <header><div class="top"><div><h1>☾ CHAWKHOU WIRD</h1><p id="subtitle">Ton espace de Wird, Dhikr et Riyāda</p></div><button class="lang" id="langBtn">Wolof</button></div></header>
 <main class="container">
-<div class="tabs"><button class="active" data-tab="wird">📿 Wird</button><button data-tab="dhikr">🤲 Dhikr</button><button data-tab="riy">📖 Riyāda</button></div>
+<div class="tabs"><button class="active" data-tab="wird">📿 Wird</button><button data-tab="dhikr">🤲 Dhikr</button><button data-tab="riy">📖 Riyāda</button><button data-tab="quran">🕌 Coran</button><button data-tab="arabic">🔤 Arabe</button></div>
 <section id="wird" class="card"><h2 id="wirdTitle">Wird quotidien</h2><p id="wirdIntro">Commence avec l’intention sincère et la tranquillité du cœur.</p>
 <div class="mini"><div class="arabic">سُبْحَانَ اللَّهِ وَبِحَمْدِهِ</div><p><b>Subḥānallāhi wa biḥamdih</b></p><p class="meaning" id="meaning">Gloire à Allah et louange à Lui.</p></div>
 <div class="counter"><button class="secondary" id="minus">−</button><div class="count" id="count">0</div><button class="primary" id="plus">+1</button></div>
@@ -40,13 +40,22 @@ footer{text-align:center;padding:25px;color:#6b776f;font-size:13px}
 <section id="riy" class="card hidden"><h2 id="riyTitle">Carnet de Riyāda</h2><p id="riyIntro">Note ton intention, ton dhikr et tes réflexions du jour.</p>
 <label for="date">Date</label><input id="date" type="date"><br><br><label for="note" id="noteLabel">Ma note spirituelle</label>
 <textarea id="note" rows="6" placeholder="Aujourd’hui, je ressens..."></textarea><br><br><button class="primary" id="save">Enregistrer sur cet appareil</button><p id="saved"></p></section>
+<section id="quran" class="card hidden"><h2>🕌 Apprendre le Coran</h2><p>Un espace pour apprendre progressivement la lecture, la mémorisation et le sens général des petites sourates. Pour la récitation exacte, vérifie toujours avec un enseignant qualifié.</p>
+<div class="mini"><h3>Al-Fātiḥa · الفاتحة</h3><div class="arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ<br>الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ<br>الرَّحْمَٰنِ الرَّحِيمِ<br>مَالِكِ يَوْمِ الدِّينِ</div><p class="meaning">Commence par écouter, répéter lentement et apprendre verset par verset.</p></div>
+<div class="grid"><div class="mini"><strong>1</strong>Écouter un verset</div><div class="mini"><strong>2</strong>Répéter 5 à 10 fois</div><div class="mini"><strong>3</strong>Lire sans regarder</div><div class="mini"><strong>4</strong>Réviser le lendemain</div></div>
+<p><b>Programme conseillé :</b> 10 minutes par jour, avec régularité et sans précipitation.</p></section>
+<section id="arabic" class="card hidden"><h2>🔤 Apprendre l’arabe</h2><p>Commence par les lettres, les voyelles courtes et quelques mots du Coran.</p>
+<div class="mini"><h3>Les premières lettres</h3><div class="arabic">ا ب ت ث ج ح خ</div><p>Alif · Bā · Tā · Thā · Jīm · Ḥā · Khā</p></div>
+<div class="mini"><h3>Voyelles courtes</h3><div class="arabic">بَ　بِ　بُ</div><p>Fatḥa = a · Kasra = i · Ḍamma = ou/u</p></div>
+<div class="grid"><div class="mini"><strong>اللَّه</strong>Allah</div><div class="mini"><strong>رَبّ</strong>Seigneur</div><div class="mini"><strong>كِتَاب</strong>Livre</div><div class="mini"><strong>نُور</strong>Lumière</div></div>
+<p><b>Exercice :</b> lis chaque lettre à voix haute, puis écris-la 5 fois dans ton cahier.</p></section>
 </main><footer>Chawkou World Business · Chawkh​ou Wird</footer>
 <script>
 const $=id=>document.getElementById(id);
 let count=Number(localStorage.getItem('cw-count')||0);$('count').textContent=count;
 function setCount(n){count=Math.max(0,n);$('count').textContent=count;localStorage.setItem('cw-count',count)}
 $('plus').onclick=()=>setCount(count+1);$('minus').onclick=()=>setCount(count-1);$('reset').onclick=()=>setCount(0);
-document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-tab]').forEach(x=>x.classList.remove('active'));b.classList.add('active');['wird','dhikr','riy'].forEach(id=>$(id).classList.toggle('hidden',id!==b.dataset.tab))});
+document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-tab]').forEach(x=>x.classList.remove('active'));b.classList.add('active');['wird','dhikr','riy','quran','arabic'].forEach(id=>$(id).classList.toggle('hidden',id!==b.dataset.tab))});
 let wolof=false;
 const texts={fr:{subtitle:'Ton espace de Wird, Dhikr et Riyāda',wirdTitle:'Wird quotidien',wirdIntro:'Commence avec l’intention sincère et la tranquillité du cœur.',meaning:'Gloire à Allah et louange à Lui.',dhikrTitle:'Dhikr et prières',dhikrNote:'Ces quantités sont des repères pratiques, pas une obligation. Respecte tes capacités et les enseignements de ton guide.',riyTitle:'Carnet de Riyāda',riyIntro:'Note ton intention, ton dhikr et tes réflexions du jour.',noteLabel:'Ma note spirituelle',save:'Enregistrer sur cet appareil',saved:'Note enregistrée.'},
 wo:{subtitle:'Sa boppu Wird, Dhikr ak Riyāda',wirdTitle:'Wird bu bis',wirdIntro:'Tambalil ci niyya bu sell ak dalu xol.',meaning:'Nuyu Yàlla ak sant ci moom.',dhikrTitle:'Dhikr ak ñaan',dhikrNote:'Lim yi ay ndigal yu jàppale rekk lañu, du lu war. Topp sa kàttan ak njàngum sa sëriñ.',riyTitle:'Kàrtu Riyāda',riyIntro:'Bindal sa niyya, dhikr ak li nga xalaat tey.',noteLabel:'Sama bindu ruuh',save:'Denc ci telefon bi',saved:'Bind bi denc na.'}};
